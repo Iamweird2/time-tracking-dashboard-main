@@ -1,17 +1,20 @@
 // let onload = document.querySelector(".eachtime2");
 // window.onload(onload)
-var clicked = "";
-
+let clicked = "";
+let clicks = "";
 let links = document.querySelector(".time");
 let duration = document.querySelectorAll(".duration");
 links.addEventListener("click",(e)=>{
-    let clicks = "";
-    clicks = e.target;
-    if(document.querySelector(".active")){
-        document.querySelector(".active").classList.remove("active")
-    }else{}
-    clicks.classList.add("active");
+
     clicked = e.target.textContent;
+    clicks = e.target;
+    if(clicked.length < 8){
+        if(document.querySelector(".active")){
+            document.querySelector(".active").classList.remove("active");
+        }else{}
+    }else{}
+    
+    clicks.classList.add("active");
     fetch("data.json")
 .then(function(response) {
     return response.json();
@@ -89,8 +92,7 @@ links.addEventListener("click",(e)=>{
         exerciseDelay.textContent = `${data[3]["timeframes"]["monthly"].previous}hrs`;
         socialDelay.textContent = `${data[4]["timeframes"]["monthly"].previous}hrs`;
         selfDelay.textContent = `${data[5]["timeframes"]["monthly"].previous}hrs`;
-      }
+        }
     })
 
 })
-console.log(clicked)
